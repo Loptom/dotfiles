@@ -1,0 +1,22 @@
+#!/bin/sh
+
+VOLUME="$(amixer get Master | awk -F 'Left:|[][]' 'BEGIN {RS=""}{ print $3 }' | cut -f 1 -d "%")"
+STATUS="$(amixer get Master | awk -F 'Left:|[][]' 'BEGIN {RS=""}{ print $5 }' | cut -f 1 -d "%")"
+icon=""
+
+if [ "$STATUS" = "off" ]; then
+    icon=""
+elif [ "$VOLUME" -lt 1 ]; then
+    icon=""
+elif [ "$VOLUME" -lt 30 ]; then
+    icon=""
+else
+    icon=""   
+fi
+   
+cat <<EOF
+$icon $VOLUME%
+EOF
+
+exit 0
+

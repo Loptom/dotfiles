@@ -1,0 +1,5 @@
+#!/bin/sh
+
+LC_ALL=pt_PT.utf8 date +"%A, %e de %B  %R"
+
+exit 0

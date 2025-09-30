@@ -1,4 +1,6 @@
 [user]
 	email = tomasrlopes@gmail.com
 	name = loptom
-    editor = neovim
+    editor = nvim
+[core]
+	editor = nvim

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+BRIGHTNESS="$(light -G | xargs printf '%.0f')"
+icon=""
+
+if [ "$BRIGHTNESS" -lt 34 ]; then
+    icon="󰃜"
+elif [ "$BRIGHTNESS" -lt 67 ]; then
+    icon="󰃛"
+else
+    icon="󰃚"   
+fi
+   
+cat <<EOF
+$icon $BRIGHTNESS%
+EOF
+
+exit 0

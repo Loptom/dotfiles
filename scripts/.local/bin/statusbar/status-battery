@@ -1,0 +1,25 @@
+#!/bin/sh
+
+BATTERY="$(cat /sys/class/power_supply/BAT0/capacity)"
+STATUS="$(cat /sys/class/power_supply/BAT0/status)"
+icon=""
+
+if [ "$STATUS" = "Charging" ]; then
+    icon=""
+elif [ "$BATTERY" -lt 20 ]; then
+    icon=""
+elif [ "$BATTERY" -lt 40 ]; then
+    icon=""
+elif [ "$BATTERY" -lt 60 ]; then
+    icon=""
+elif [ "$BATTERY" -lt 80 ]; then
+    icon=""
+else
+    icon=""   
+fi
+   
+cat <<EOF
+$icon $BATTERY%
+EOF
+
+exit 0
