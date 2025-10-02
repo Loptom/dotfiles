@@ -1,19 +1,20 @@
 #!/bin/sh
 
+STATUS="$(cat /sys/class/net/w*/operstate 2>/dev/null)"
 icon=""
 quality=""
 name=""
 
-if [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'up' ] ; then
+if [ "$STATUS" = "up" ]; then
     icon=""
-	quality="$(awk '/^\s*w/ {int($3 * 100 / 70) "%" }' /proc/net/wireless)"
-elif [ "$(cat /sys/class/net/w*/operstate 2>/dev/null)" = 'down' ] ; then
-	[ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = '0x1003' ] && icon="📡" || icon="❌"
+    quality="$(awk '/^\s*w/ {print " " int($3 * 100 / 70) "%" }' /proc/net/wireless)"
+    name=" - $(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2)"
+elif [ "$STATUS" = "down" ]; then
+    [ "$(cat /sys/class/net/w*/flags 2>/dev/null)" = "0x1003" ] && icon="" || icon=""
 fi
-   
+
 cat <<EOF
-$icon $quality $name
+$icon$quality$name 
 EOF
 
 exit 0
-
