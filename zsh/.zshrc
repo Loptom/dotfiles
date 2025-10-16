@@ -32,6 +32,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias n="nvim"
+alias sunvim="sudo -E -s nvim"
 alias ff="fastfetch"
 alias cdwm="rm -f ~/dwm/config.h; sudo make -C ~/dwm install clean"
 alias cdwmblocks="rm -f ~/dwmblocks/blocks.h; sudo make -C ~/dwmblocks install clean"
