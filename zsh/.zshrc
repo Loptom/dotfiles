@@ -38,9 +38,15 @@ alias cdwm="rm -f ~/dwm/config.h; sudo make -C ~/dwm install clean"
 alias cdwmblocks="rm -f ~/dwmblocks/blocks.h; sudo make -C ~/dwmblocks install clean"
 alias cst="rm -f ~/st/config.h; sudo make -C ~/st install clean"
 alias discord="vesktop"
+alias clipboard="xclip -selection c"
 
 BinDirs=$(find -L "$HOME"/.local/bin -type d)
 path+="${BinDirs//$'\n'/:}"
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
 
 # PURE theme
 fpath+=($HOME/.zsh/pure)
