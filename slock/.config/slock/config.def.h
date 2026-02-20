@@ -4,21 +4,29 @@ static const char *group = "nobody";
 
 static const char *colorname[NUMCOLS] = {
 	[INIT] =   "black",     /* after initialization */
-	[INPUT] =  "#005577",   /* during input */
+	[INPUT] =  "black",   /* during input */
 	[FAILED] = "#CC3333",   /* wrong password */
+    [TEXT] = "#FFFFFF"
 };
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "color0",       STRING,  &colorname[INIT] },
+		{ "color4",       STRING,  &colorname[INPUT] },
+		{ "color1",       STRING,  &colorname[FAILED] },
+		{ "color8",       STRING,  &colorname[TEXT] },
+};
+
+/* lock screen opacity */
+static const float alpha = 0.5;
 
 /* treat a cleared input like a wrong password (color) */
 static const int failonclear = 0;
 
-/*Enable blur*/
-#define BLUR
+/* default message */
+static const char * message = "screen is locked";
 
-/*Set blur radius*/
-static const int blurRadius=4;
-
-/*Enable Pixelation*/
-//#define PIXELATION
-
-/*Set pixelation radius*/
-static const int pixelSize=0;
+/* text size (must be a valid size) */
+static const char * text_size = "-*-terminus-bold-r-normal-*-32-*-*-*-*-*-*-*";
