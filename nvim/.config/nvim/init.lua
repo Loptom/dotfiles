@@ -54,7 +54,7 @@ vim.g.mapleader = ","
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
+    vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Keymaps (see :help vim.keymap.set)
@@ -80,26 +80,39 @@ vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format current b
 -- handled in lua/config/lazy.lua
 require("config.lazy")
 
+-- Theme load
+
+local theme_file = vim.fn.stdpath("data") .. "/persistent_colorscheme.txt"
+
+if vim.fn.filereadable(theme_file) == 1 then
+    local saved_theme = vim.fn.readfile(theme_file)[1]
+
+    if saved_theme then
+        pcall(vim.cmd, "colorscheme " .. saved_theme)
+    end
+end
+
+
 -- Format using conform plugin
 vim.api.nvim_create_user_command("Format", function()
-	local conform = require("conform")
+    local conform = require("conform")
 
-	-- Get the formatters that would be used for the current buffer
-	local formatters = conform.list_formatters(0) -- 0 = current buffer
+    -- Get the formatters that would be used for the current buffer
+    local formatters = conform.list_formatters(0) -- 0 = current buffer
 
-	if vim.tbl_isempty(formatters) then
-		vim.notify(
-			"No formatter configured or available for this filetype! Check ConformInfo for more specific information",
-			vim.log.levels.ERROR
-		)
-		return
-	end
+    if vim.tbl_isempty(formatters) then
+        vim.notify(
+            "No formatter configured or available for this filetype! Check ConformInfo for more specific information",
+            vim.log.levels.ERROR
+        )
+        return
+    end
 
-	conform.format({
-		async = true,
-		lsp_fallback = true,
-		callback = function()
-			vim.cmd("write")
-		end,
-	})
+    conform.format({
+        async = true,
+        lsp_fallback = true,
+        callback = function()
+            vim.cmd("write")
+        end,
+    })
 end, { desc = "Format and save file" })
