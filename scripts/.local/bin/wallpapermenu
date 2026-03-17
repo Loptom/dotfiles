@@ -3,7 +3,7 @@
 FOLDER=$HOME/.config/wallpapers
 SCRIPT=$HOME/.local/bin/walrefresh
 
-CHOICE=$(nsxiv -otb $FOLDER)
+CHOICE=$(nsxiv -otb $FOLDER --name "wallpapermenu")
 
 case $CHOICE in
         *.*) wal -n -i "$CHOICE" -o "$SCRIPT" ;;

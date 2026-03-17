@@ -1,0 +1,8 @@
+rootcolor=0x201b14ff
+bordercolor=0x{color8.strip}00
+focuscolor=0x{color13.strip}99
+maximizescreencolor=0x{color15.strip}ff
+urgentcolor=0x{color1.strip}ff
+scratchpadcolor=0x516c93ff
+globalcolor=0x{color15.strip}ff
+overlaycolor=0x14a57cff

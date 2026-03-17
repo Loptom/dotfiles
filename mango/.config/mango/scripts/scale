@@ -1,0 +1,5 @@
+#!/bin/sh
+
+/usr/sbin/xwayland-satellite :11 &
+sleep 0.5s && echo "Xft.dpi: 100" | xrdb -merge
+gsettings set org.gnome.desktop.interface text-scaling-factor 1

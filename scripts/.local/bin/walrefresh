@@ -1,6 +1,21 @@
 #!/bin/sh
 
-feh --bg-fill "$(< "$HOME/.cache/wal/wal")"  
-cat $HOME/.cache/wal/colors.Xresources > $HOME/.config/X11/Xresources.d/colors
+ln -sf $HOME/.cache/wal/colors.Xresources $HOME/.config/X11/Xresources.d/colors
+ln -sf $HOME/.cache/wal/colors-waybar.css $HOME/.config/waybar/colors.css
+ln -sf $HOME/.cache/wal/mango $HOME/.config/mango/colors.conf
+
+cat $HOME/.config/dunst/dunst_nocolors $HOME/.cache/wal/dunstrc > $HOME/.config/dunst/dunstrc
+cat $HOME/.config/fuzzel/fuzzel_no_colors $HOME/.cache/wal/colors-fuzzel.ini > $HOME/.config/fuzzel/fuzzel.ini
+
+pidof swaybg && killall swaybg
+swaybg -m fill -i $(< "$HOME/.cache/wal/wal") &
+
+pidof dunst && killall dunst
+dunst &
+
+pidof waybar && killall waybar
+waybar &
+
 xrdb -merge $HOME/.config/X11/.Xresources
-xdotool key --clearmodifiers super+F5
+
+mmsg -d reload_config

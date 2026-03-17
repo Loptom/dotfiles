@@ -1,0 +1,12 @@
+font=Ubuntu Mono Nerd Font-15
+icons-enabled=no
+
+lines=15
+width=30
+horizontal-pad=10
+vertical-pad=8
+inner-pad=10
+
+[border]
+radius=5
+

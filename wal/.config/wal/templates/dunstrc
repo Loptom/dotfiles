@@ -1,0 +1,11 @@
+[urgency_low]
+    background = "{background}"
+    foreground = "{color6}"
+
+[urgency_normal]
+    background = "{background}"
+    foreground = "{color6}"
+
+[urgency_critical]
+    background = "{background}"
+    foreground = "{color6}"
