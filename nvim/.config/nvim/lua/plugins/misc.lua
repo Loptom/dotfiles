@@ -15,10 +15,8 @@ return {
 		opts = { render_modes = { "n", "c", "t" } },
 		ft = { "markdown" },
 	},
-	{
-		-- dir = "~/projects/sandbox.nvim",
-		"R-Camacho/sandbox.nvim",
-		opts = {},
-        cmd = { "SandboxTry" },
-	},
+    {
+        "norcalli/nvim-colorizer.lua",
+        opts = {}
+    },
 }
